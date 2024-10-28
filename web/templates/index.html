@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sohbet Uygulaması</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/static/script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Sohbet Uygulaması</h1>
+        <div id="active-users">
+            <h2>Aktif Kullanıcılar</h2>
+            <ul id="user-list">
+                {% for user in active_users %}
+                    <li>
+                        {{ user }} <button class="dm-button" data-recipient="{{ user }}">DM</button>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div id="messages-container">
+            <div id="messages"></div>
+            <form id="message-form">
+                <input type="text" id="message-input" placeholder="Mesajınızı yazın..." required>
+                <button type="submit">Gönder</button>
+            </form>
+        </div>
+        <div id="channel-container">
+            <h2>Kanal Oluştur</h2>
+            <input type="text" id="new-channel-input" placeholder="Yeni kanal adı">
+            <button id="create-channel">Oluştur</button>
+            <h2>Kanal Listesi</h2>
+            <ul id="channel-list">
+                {% for channel in channels %}
+                    <li class="channel-item" data-channel="{{ channel }}">{{ channel }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <button id="logout">Çıkış Yap</button>
+    </div>
+</body>
+</html>
